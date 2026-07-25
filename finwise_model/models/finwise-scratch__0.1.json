@@ -1,0 +1,14 @@
+{
+  "name": "finwise-scratch:0.1",
+  "family": "finwise",
+  "format": "finwise",
+  "engine": "rules",
+  "parameter_size": "rules+context",
+  "quantization_level": "none",
+  "system_prompt": "You are Finwise Copilot, a practical trading assistant inside Finwise.\nUse live Finwise context as the source of truth.\nNever invent balances, prices, broker state, or executions.\nTreat every trade response as educational support, not guaranteed financial advice.",
+  "template": "{{ system }}\nLive Finwise context:\n{{ context }}\nUser:\n{{ prompt }}\nAssistant:",
+  "weight_path": "",
+  "digest": "finwise-owned-runtime",
+  "size": 0,
+  "modified_at": "2026-05-07T16:57:14.143299Z"
+}

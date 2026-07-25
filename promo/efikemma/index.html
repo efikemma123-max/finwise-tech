@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>efikemma | Deriv Trading Education</title>
+    <meta name="description" content="Independent Deriv trading education and Finwise testing workspace for the efikemma account.">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="./" aria-label="efikemma home">
+            <img src="../../logo.png" alt="Finwise logo">
+            <span>efikemma</span>
+        </a>
+        <nav class="nav-links" aria-label="Page sections">
+            <a href="#about">About</a>
+            <a href="#deriv">Deriv</a>
+            <a href="#oauth">OAuth</a>
+            <a href="#risk">Risk</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Independent trading education profile</p>
+                <h1>efikemma Deriv learning hub</h1>
+                <p class="lead">
+                    A local test page for sharing Deriv market education, Finwise trading notes,
+                    and risk-first setup reviews under the efikemma account.
+                </p>
+                <div class="hero-actions" aria-label="Primary links">
+                    <a class="button button-primary" href="#oauth">Connect with Deriv</a>
+                    <a class="button button-secondary" href="#deriv">View profile details</a>
+                </div>
+            </div>
+            <aside class="profile-panel" aria-label="Account summary">
+                <div class="profile-badge">EF</div>
+                <h2>efikemma</h2>
+                <p>Deriv promotional account test page</p>
+                <dl>
+                    <div>
+                        <dt>Focus</dt>
+                        <dd>Market education</dd>
+                    </div>
+                    <div>
+                        <dt>Platform</dt>
+                        <dd>Deriv</dd>
+                    </div>
+                    <div>
+                        <dt>Status</dt>
+                        <dd>Local preview</dd>
+                    </div>
+                </dl>
+            </aside>
+        </section>
+
+        <section id="about" class="section">
+            <div class="section-copy">
+                <p class="eyebrow">About this page</p>
+                <h2>Built for the efikemma account</h2>
+                <p>
+                    This page gives the account a dedicated web address for testing before it is
+                    published publicly. It can later be deployed as the website or profile link used
+                    inside Deriv promotional platform setup.
+                </p>
+            </div>
+            <div class="feature-grid">
+                <article>
+                    <h3>Education</h3>
+                    <p>Simple explanations of market ideas, trading discipline, and setup planning.</p>
+                </article>
+                <article>
+                    <h3>Finwise notes</h3>
+                    <p>Space for account updates, signal reviews, and trading workspace context.</p>
+                </article>
+                <article>
+                    <h3>Deriv link test</h3>
+                    <p>A clean local URL you can open in your browser before making it public.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="deriv" class="section split-section">
+            <div>
+                <p class="eyebrow">Promotional platform</p>
+                <h2>Deriv account connection preview</h2>
+                <p>
+                    Use this local page to confirm the account name, content, and layout. For a real
+                    Deriv submission, this same page must be hosted on a public URL so Deriv can open it.
+                </p>
+            </div>
+            <div class="url-box">
+                <span>Website URL</span>
+                <strong>http://localhost:8765/promo/efikemma/</strong>
+            </div>
+        </section>
+
+        <section id="oauth" class="section oauth-section">
+            <div class="section-copy">
+                <p class="eyebrow">Deriv OAuth</p>
+                <h2>Local callback setup</h2>
+                <p>
+                    Register the callback URL below in your Deriv app. After Deriv login, this page
+                    receives the returned account IDs and session tokens so you can test the flow locally.
+                </p>
+            </div>
+
+            <div class="oauth-grid">
+                <div class="url-box">
+                    <span>Redirect URL</span>
+                    <strong id="callback-url">http://localhost:8765/promo/efikemma/callback/</strong>
+                    <button class="small-button" type="button" data-copy-target="callback-url">Copy</button>
+                </div>
+                <div class="url-box">
+                    <span>Website URL</span>
+                    <strong id="website-url">http://localhost:8765/promo/efikemma/</strong>
+                    <button class="small-button" type="button" data-copy-target="website-url">Copy</button>
+                </div>
+            </div>
+
+            <form id="deriv-login-form" class="connect-form">
+                <label class="field">
+                    <span>Deriv app ID</span>
+                    <input id="deriv-app-id" type="text" inputmode="numeric" placeholder="Enter your Deriv app ID">
+                </label>
+                <button class="button button-primary" type="submit">Start Deriv Login</button>
+            </form>
+            <p id="oauth-message" class="form-message" aria-live="polite"></p>
+        </section>
+
+        <section id="risk" class="section notice">
+            <h2>Risk notice</h2>
+            <p>
+                Trading involves risk and may not be suitable for everyone. This page is for education
+                and account preview purposes only. It is not financial advice and is not an official
+                Deriv website.
+            </p>
+        </section>
+    </main>
+    <script src="./app.js"></script>
+</body>
+</html>

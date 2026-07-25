@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Finwise Mobile</title>
+    <link rel="stylesheet" href="/mobile/styles.css">
+</head>
+<body>
+    <div class="app-bg app-bg--one"></div>
+    <div class="app-bg app-bg--two"></div>
+
+    <div class="mobile-app">
+        <section id="auth-view" class="screen auth-screen">
+            <div class="auth-card card">
+                <div class="brand-row">
+                    <div class="brand-mark">F</div>
+                    <div>
+                        <div class="eyebrow">Finwise AI</div>
+                        <h1>Standalone Mobile Workspace</h1>
+                    </div>
+                </div>
+
+                <p class="lead-copy">
+                    Phone users now land in a dedicated HTML, CSS, and JavaScript trading surface with live market data, signal flow, and account access.
+                </p>
+
+                <div id="auth-global-message" class="banner hidden"></div>
+
+                <div class="auth-switch">
+                    <button type="button" class="switch-chip is-active" data-auth-panel="login">Sign In</button>
+                    <button type="button" class="switch-chip" data-auth-panel="register">Create Account</button>
+                    <button type="button" class="switch-chip" data-auth-panel="reset">Reset Password</button>
+                </div>
+
+                <form id="login-form" class="auth-form">
+                    <label class="field">
+                        <span>Username</span>
+                        <input id="login-username" type="text" autocomplete="username" placeholder="Your workspace username">
+                    </label>
+                    <label class="field">
+                        <span>Password</span>
+                        <input id="login-password" type="password" autocomplete="current-password" placeholder="Your password">
+                    </label>
+                    <label class="toggle-row">
+                        <input id="login-remember" type="checkbox" checked>
+                        <span>Keep this device signed in</span>
+                    </label>
+                    <button class="action primary" type="submit">Open Mobile Workspace</button>
+                </form>
+
+                <form id="register-form" class="auth-form hidden">
+                    <label class="field">
+                        <span>Username</span>
+                        <input id="register-username" type="text" autocomplete="username" placeholder="Choose a username">
+                    </label>
+                    <label class="field">
+                        <span>Email</span>
+                        <input id="register-email" type="email" autocomplete="email" placeholder="you@example.com">
+                    </label>
+                    <label class="field">
+                        <span>Phone</span>
+                        <input id="register-phone" type="tel" autocomplete="tel" placeholder="+234...">
+                    </label>
+                    <label class="field">
+                        <span>Password</span>
+                        <input id="register-password" type="password" autocomplete="new-password" placeholder="Create a strong password">
+                    </label>
+                    <div id="register-stage-banner" class="banner subtle hidden"></div>
+                    <div id="register-otp-block" class="auth-stage hidden">
+                        <label class="field">
+                            <span>Verification Code</span>
+                            <input id="register-otp" type="text" inputmode="numeric" placeholder="6-digit code">
+                        </label>
+                        <label class="toggle-row">
+                            <input id="register-remember" type="checkbox" checked>
+                            <span>Sign me in after setup</span>
+                        </label>
+                    </div>
+                    <button id="register-submit" class="action primary" type="submit">Send Verification Code</button>
+                </form>
+
+                <form id="reset-form" class="auth-form hidden">
+                    <label class="field">
+                        <span>Username</span>
+                        <input id="reset-username" type="text" autocomplete="username" placeholder="Your workspace username">
+                    </label>
+                    <label class="field">
+                        <span>Email</span>
+                        <input id="reset-email" type="email" autocomplete="email" placeholder="Email on the account">
+                    </label>
+                    <div id="reset-stage-banner" class="banner subtle hidden"></div>
+                    <div id="reset-otp-block" class="auth-stage hidden">
+                        <label class="field">
+                            <span>Reset Code</span>
+                            <input id="reset-otp" type="text" inputmode="numeric" placeholder="6-digit code">
+                        </label>
+                        <label class="field">
+                            <span>New Password</span>
+                            <input id="reset-password" type="password" autocomplete="new-password" placeholder="Create a new password">
+                        </label>
+                        <label class="toggle-row">
+                            <input id="reset-remember" type="checkbox" checked>
+                            <span>Sign me in after reset</span>
+                        </label>
+                    </div>
+                    <button id="reset-submit" class="action primary" type="submit">Send Reset Code</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="app-view" class="screen app-screen hidden">
+            <header class="top-card">
+                <div class="top-shell">
+                    <div class="brand-row brand-row--app">
+                        <div class="brand-mark">F</div>
+                        <div class="brand-copy">
+                            <div class="brand-title">Finwise AI</div>
+                            <div id="session-username" class="sr-only">Workspace</div>
+                            <div id="session-plan" class="sr-only">Free</div>
+                            <div id="session-signals-left" class="sr-only">--</div>
+                        </div>
+                    </div>
+
+                    <div class="top-actions">
+                        <div id="header-live-pill" class="live-pill">
+                            <span class="live-dot"></span>
+                            <span id="session-broker-status">Live Feed</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="page-stack">
+                <section id="page-home" class="page" data-page="home">
+                    <div class="home-dashboard-shell">
+                        <div class="home-top-row">
+                            <div class="home-brand-lockup">
+                                <div class="home-brand-badge">
+                                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                                        <path d="M4 22.5h5.3V28H4zm7.3-5.8h5.4V28h-5.4zm7.4-7.3h5.3V28h-5.3zm7.1-5.4 2.7 2.4L20 15.9l-2.7-2.4L25.8 4z" />
+                                    </svg>
+                                </div>
+                                <div class="home-brand-title">Finwise AI</div>
+                            </div>
+
+                            <div class="home-top-actions">
+                                <button id="home-notification-button" type="button" class="home-icon-button" aria-label="Notifications">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M12 3a4 4 0 0 0-4 4v1.1c0 .8-.3 1.6-.8 2.2L5.5 12a2 2 0 0 0 1.4 3.4h10.2a2 2 0 0 0 1.4-3.4l-1.7-1.7a3.2 3.2 0 0 1-.8-2.2V7a4 4 0 0 0-4-4Zm1.8 15.5a1.8 1.8 0 0 1-3.6 0" />
+                                    </svg>
+                                    <span class="home-icon-dot"></span>
+                                </button>
+                                <button id="home-profile-button" type="button" class="home-avatar-button" data-page-target="settings" aria-label="Open account">
+                                    <span id="home-avatar-initials">AK</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="home-search-row">
+                            <label class="home-search-shell">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M11 5a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm8 14-3.3-3.3" />
+                                </svg>
+                                <input id="home-search" type="search" autocomplete="off" placeholder="Search trading pairs (e.g. BTC/USDT)">
+                            </label>
+                            <button id="home-filter-button" type="button" class="home-filter-button" aria-label="Open market filters">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M5 7h14M5 12h10M5 17h14M15 5v4M11 10v4M17 15v4" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <section class="home-sync-card card">
+                            <div class="home-sync-orb">
+                                <div class="home-sync-ring"></div>
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M20 5v5h-5M4 19v-5h5M6.8 9A6.5 6.5 0 0 1 18 6.2L20 10M4 14l2 3.8A6.5 6.5 0 0 0 17.2 15" />
+                                </svg>
+                            </div>
+                            <div class="home-sync-copy">
+                                <div id="home-sync-title" class="home-sync-title">Engine Syncing</div>
+                                <div id="home-sync-message" class="home-sync-message">Real-time market data is being updated...</div>
+                            </div>
+                            <div id="home-sync-pill" class="home-sync-pill">Live</div>
+                        </section>
+
+                        <section class="home-market-card card">
+                            <div class="home-market-copy">
+                                <div class="home-market-title">Market Analysis</div>
+                                <div class="home-market-subtitle">Real-time overview of the crypto market</div>
+                            </div>
+                            <label class="home-period-select-shell">
+                                <select id="home-period-select" class="home-period-select" data-custom-select="home-period" aria-label="Home performance period">
+                                    <option value="24H">24H</option>
+                                    <option value="7D">7D</option>
+                                    <option value="30D">30D</option>
+                                </select>
+                            </label>
+                        </section>
+
+                        <section class="home-pnl-card card">
+                            <div class="home-card-head">
+                                <div class="home-card-title">Profit &amp; Loss (P&amp;L)</div>
+                                <button type="button" class="home-card-link" data-page-target="journal">View all</button>
+                            </div>
+
+                            <div class="home-pnl-grid">
+                                <article class="home-pnl-tile home-pnl-tile--profit">
+                                    <div class="home-pnl-label">Total Profit</div>
+                                    <div class="home-pnl-value-row">
+                                        <strong id="home-profit-total">--</strong>
+                                        <span>USDT</span>
+                                    </div>
+                                    <div class="home-pnl-delta-row">
+                                        <div id="home-profit-delta" class="home-pnl-delta positive">--</div>
+                                        <span>vs last period</span>
+                                    </div>
+                                    <div id="home-profit-sparkline" class="home-pnl-sparkline"></div>
+                                </article>
+
+                                <article class="home-pnl-tile home-pnl-tile--loss">
+                                    <div class="home-pnl-label">Total Loss</div>
+                                    <div class="home-pnl-value-row">
+                                        <strong id="home-loss-total">--</strong>
+                                        <span>USDT</span>
+                                    </div>
+                                    <div class="home-pnl-delta-row">
+                                        <div id="home-loss-delta" class="home-pnl-delta negative">--</div>
+                                        <span>vs last period</span>
+                                    </div>
+                                    <div id="home-loss-sparkline" class="home-pnl-sparkline"></div>
+                                </article>
+                            </div>
+
+                            <div class="home-pnl-summary">
+                                <div class="home-pnl-summary-copy">
+                                    <div class="home-pnl-label">Net P&amp;L</div>
+                                    <div class="home-pnl-value-row home-pnl-value-row--summary">
+                                        <strong id="home-net-total">--</strong>
+                                        <span>USDT</span>
+                                    </div>
+                                </div>
+                                <div class="home-win-cluster">
+                                    <div class="home-win-ring-shell">
+                                        <svg viewBox="0 0 64 64" class="home-win-ring" aria-hidden="true">
+                                            <circle cx="32" cy="32" r="24"></circle>
+                                            <circle id="home-win-ring-progress" class="progress" cx="32" cy="32" r="24"></circle>
+                                        </svg>
+                                        <div id="home-win-rate" class="home-win-rate">0%</div>
+                                    </div>
+                                    <div class="home-win-copy">
+                                        <div class="home-pnl-label">Winning Trades</div>
+                                        <strong id="home-win-count">0 of 0</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div id="home-metrics" class="sr-only"></div>
+                        <div id="home-broker-card" class="sr-only"></div>
+                        <div id="home-recent-trades" class="sr-only"></div>
+                        <div id="home-history-list" class="sr-only"></div>
+                        <button id="home-refresh" class="sr-only" type="button">Refresh</button>
+                    </div>
+                </section>
+
+                <section id="page-markets" class="page is-active page--market-analysis" data-page="markets">
+                    <div class="market-analysis-shell">
+                        <div class="market-analysis-copy">
+                            <div class="market-analysis-title">Market Analysis</div>
+                            <div class="market-analysis-subtitle">Live chart, depth, and execution levels for your selected market.</div>
+                        </div>
+
+                        <div class="market-analysis-divider"></div>
+
+                        <div class="market-control-grid-shell">
+                            <div id="market-search-shell" class="market-search-shell">
+                                <label class="market-field">
+                                    <span>Search pair</span>
+                                    <div class="market-search-input-shell">
+                                        <input id="market-search" type="search" autocomplete="off" placeholder="Search pairs (BTC, ETH, USDC...)">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M11 5a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm8 14-3.3-3.3" />
+                                        </svg>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="market-field">
+                                <span>Trading pair</span>
+                                <div class="market-trading-select-shell">
+                                    <select id="market-symbol" class="market-trading-select" data-custom-select="market-symbol" aria-label="Trading pair"></select>
+                                </div>
+                            </div>
+
+                            <div class="market-field">
+                                <span>Timeframe</span>
+                                <div id="market-timeframe-pills" class="timeframe-row market-timeframe-pills"></div>
+                                <select id="market-interval" class="sr-only"></select>
+                            </div>
+                        </div>
+
+                        <section class="market-summary-card card">
+                            <div class="market-summary-slot">
+                                <div class="market-summary-label">Market</div>
+                                <div id="market-summary-symbol" class="market-summary-primary">BTCUSDT</div>
+                                <div class="market-summary-secondary">
+                                    <span id="market-summary-type">Perpetual</span>
+                                    <span class="market-summary-dot">i</span>
+                                </div>
+                            </div>
+                            <div class="market-summary-slot">
+                                <div class="market-summary-label">Last Price</div>
+                                <div id="market-summary-last-price" class="market-summary-primary">--</div>
+                                <div id="market-summary-last-change" class="market-summary-negative">--</div>
+                            </div>
+                            <div class="market-summary-slot">
+                                <div class="market-summary-label">24h Change</div>
+                                <div id="market-summary-day-change" class="market-summary-primary market-summary-negative">--</div>
+                                <div id="market-summary-notional-change" class="market-summary-negative">--</div>
+                            </div>
+                            <div class="market-summary-slot market-summary-slot--volume">
+                                <div class="market-summary-label">24h Volume</div>
+                                <div class="market-summary-volume-copy">
+                                    <div id="market-summary-volume" class="market-summary-primary">--</div>
+                                    <div id="market-summary-volume-asset" class="market-summary-secondary-text">BTC</div>
+                                </div>
+                                <div id="market-summary-bars" class="summary-bars" aria-hidden="true"></div>
+                            </div>
+                            <span id="market-headline-usd" class="sr-only">--</span>
+                            <span id="market-compact-high" class="sr-only">--</span>
+                            <span id="market-compact-low" class="sr-only">--</span>
+                            <span id="market-compact-turnover" class="sr-only">--</span>
+                        </section>
+
+                        <section id="market-chart-section" class="market-chart-card card">
+                            <div class="market-chart-header">
+                                <div class="market-chart-header-copy">
+                                    <div id="market-chart-title" class="market-chart-title">BTCUSDT Perpetual - 3m</div>
+                                    <div id="market-chart-ohlc" class="market-chart-ohlc">Waiting for live candle data...</div>
+                                </div>
+                                <div id="market-live-status" class="chart-live-pill">
+                                    <span class="live-dot"></span>
+                                    <span>Live</span>
+                                </div>
+                            </div>
+
+                            <div class="market-chart-frame">
+                                <div id="market-chart-root" class="chart-root"></div>
+                            </div>
+
+                            <div class="market-chart-toolbar">
+                                <div id="market-chart-timeframes" class="timeframe-row timeframe-row--compact market-chart-timeframes"></div>
+                                <button id="market-indicator-toggle" type="button" class="market-chart-toolbar-button" aria-expanded="false">
+                                    <span>Indicators</span>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M7 10l5 5 5-5" />
+                                    </svg>
+                                </button>
+                                <div class="market-chart-toolbar-icons">
+                                    <button type="button" class="market-chart-icon" aria-hidden="true" tabindex="-1">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7Zm7-3.5h2M3 12h2M12 3v2M12 19v2M17.2 6.8l1.4-1.4M5.4 18.6l1.4-1.4M17.2 17.2l1.4 1.4M5.4 5.4l1.4 1.4" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="market-chart-icon" aria-hidden="true" tabindex="-1">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M7 3H3v4M17 3h4v4M7 21H3v-4M21 17v4h-4" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" class="market-chart-icon" aria-hidden="true" tabindex="-1">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M21 16v5h-5" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="market-indicator-drawer" class="market-indicator-drawer hidden">
+                                <div class="market-control-strip market-control-strip--indicators">
+                                    <button type="button" class="market-indicator-button" data-market-indicator="MA">MA</button>
+                                    <button type="button" class="market-indicator-button is-active" data-market-indicator="EMA">EMA</button>
+                                    <button type="button" class="market-indicator-button" data-market-indicator="BOLL">BOLL</button>
+                                    <button type="button" class="market-indicator-button" data-market-indicator="SAR">SAR</button>
+                                    <button type="button" class="market-indicator-button" data-market-indicator="MAVOL">MAVOL</button>
+                                    <button type="button" class="market-indicator-button" data-market-indicator="MACD">MACD</button>
+                                </div>
+                                <div id="market-indicator-legend" class="sr-only">Loading indicators...</div>
+                            </div>
+
+                            <div id="market-feed-banner" class="sr-only">Connecting to the live market feed...</div>
+                        </section>
+
+                        <section id="market-overview-section" class="market-overview-card card">
+                            <div class="market-section-title">Market Overview</div>
+                            <div id="market-stats" class="market-overview-grid"></div>
+                        </section>
+
+                        <section id="market-data-section" class="market-orderbook-card card">
+                            <div class="market-orderbook-head">
+                                <div class="market-section-title">Order Book</div>
+                                <button type="button" class="market-section-link" data-market-scroll="market-data-section">Depth</button>
+                            </div>
+
+                            <div class="orderbook-topline">
+                                <div class="orderbook-ratio">
+                                    <span id="market-bid-ratio-label">Bids --</span>
+                                    <div class="ratio-bar ratio-bar--bid">
+                                        <span id="market-bid-ratio-bar"></span>
+                                    </div>
+                                </div>
+
+                                <div class="orderbook-center">
+                                    <div id="market-mid-price-main" class="orderbook-price">--</div>
+                                    <div class="orderbook-center-meta">
+                                        <span>Mid Price <strong id="market-mid">--</strong></span>
+                                        <span>Spread <strong id="market-spread">--</strong></span>
+                                    </div>
+                                </div>
+
+                                <div class="orderbook-ratio orderbook-ratio--ask">
+                                    <span id="market-ask-ratio-label">Asks --</span>
+                                    <div class="ratio-bar ratio-bar--ask">
+                                        <span id="market-ask-ratio-bar"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="depth-table-head">
+                                <span>Price (USDT)</span>
+                                <span>Size (BTC)</span>
+                                <span>Total (BTC)</span>
+                            </div>
+                            <div id="market-depth-table" class="depth-table"></div>
+                        </section>
+
+                        <section id="market-feed-section" class="market-signal-card card">
+                            <div class="market-signal-head">
+                                <div class="market-section-title">AI Signal</div>
+                                <span id="market-signal-usage" class="signal-usage-pill">-- used today</span>
+                            </div>
+
+                            <div class="market-signal-body">
+                                <div class="signal-orb-wrap">
+                                    <div class="signal-orb">
+                                        <div class="signal-orb-ring"></div>
+                                        <div class="signal-orb-core">
+                                            <div class="signal-face">
+                                                <span></span>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="market-signal-side" class="signal-verdict hold">NEUTRAL</div>
+                                </div>
+
+                                <div class="signal-detail">
+                                    <div class="signal-confidence-row">
+                                        <span>Confidence</span>
+                                        <div class="confidence-track">
+                                            <span id="market-signal-confidence-bar"></span>
+                                        </div>
+                                        <strong id="market-signal-confidence">62%</strong>
+                                    </div>
+                                    <div class="signal-analysis-label">Analysis</div>
+                                    <p id="market-signal-analysis" class="signal-analysis-copy">
+                                        Price is consolidating near key levels. Wait for breakout confirmation.
+                                    </p>
+                                    <button id="market-signal-button" class="action primary action--cta" type="button">Open Trade Desk</button>
+                                    <div class="signal-route-note">AI signal requests now run from Trade Desk so the result stays attached to execution tools.</div>
+                                </div>
+                            </div>
+
+                            <div class="signal-level-grid">
+                                <div>
+                                    <span>Key Levels</span>
+                                    <strong id="market-signal-levels">Watch VWAP</strong>
+                                </div>
+                                <div>
+                                    <span>Support</span>
+                                    <strong id="market-signal-support">--</strong>
+                                </div>
+                                <div>
+                                    <span>Resistance</span>
+                                    <strong id="market-signal-resistance">--</strong>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="market-upgrade-banner card">
+                            <div class="market-upgrade-copy">
+                                <div class="market-section-title">Unlock Full Potential</div>
+                                <p>Upgrade to Premium for advanced AI signals, backtesting, and more.</p>
+                            </div>
+                            <button type="button" class="action primary action--compact">Upgrade Now</button>
+                        </section>
+
+                        <div id="market-ticker-rail" class="market-ticker-strip card"></div>
+
+                        <div class="market-trade-bar hidden" aria-hidden="true">
+                            <button type="button" class="trade-side trade-side--buy" data-trade-open="desk">
+                                <span>Buy</span>
+                                <strong id="market-buy-price">--</strong>
+                            </button>
+                            <div class="trade-center-pill">
+                                <span id="market-trade-center-title">Signal Desk</span>
+                                <strong id="market-trade-center-base">BTC</strong>
+                            </div>
+                            <button type="button" class="trade-side trade-side--sell" data-trade-open="desk">
+                                <span>Sell</span>
+                                <strong id="market-sell-price">--</strong>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="page-desk" class="page" data-page="desk">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">Trade Desk</div>
+                            <h3>Analyze, route, and execute</h3>
+                        </div>
+                        <button id="desk-refresh" class="action ghost" type="button">Refresh</button>
+                    </div>
+                    <div id="desk-summary" class="info-card card"></div>
+                    <div class="card desk-controls">
+                        <label class="field">
+                            <span>Balance Basis</span>
+                            <input id="desk-balance" type="number" min="50" step="50" value="10000">
+                        </label>
+                        <label class="field">
+                            <span>Trading Style</span>
+                            <div class="field-select-shell">
+                                <select id="desk-trade-style" data-custom-select="desk-trade-style" aria-label="Trading style"></select>
+                            </div>
+                        </label>
+                        <button id="desk-signal-button" class="action primary" type="button">Send Signal Now</button>
+                    </div>
+                    <div id="desk-broker-card" class="info-card card"></div>
+                    <div id="desk-signal-empty" class="empty-state card">
+                        Trade Desk keeps your AI signal and execution context together for the active market.
+                    </div>
+                    <div id="desk-signal-card" class="signal-card card hidden"></div>
+                </section>
+
+                <section id="page-journal" class="page" data-page="journal">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">Journal</div>
+                            <h3>Trade history</h3>
+                        </div>
+                    </div>
+                    <div class="filter-row">
+                        <button type="button" class="filter-chip is-active" data-journal-status="all">All</button>
+                        <button type="button" class="filter-chip" data-journal-status="open">Open</button>
+                        <button type="button" class="filter-chip" data-journal-status="closed">Closed</button>
+                    </div>
+                    <div id="journal-metrics" class="metrics-grid compact-grid"></div>
+                    <div id="journal-list" class="list-stack"></div>
+                </section>
+
+                <section id="page-settings" class="page" data-page="settings">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">Account</div>
+                            <h3>Workspace settings</h3>
+                        </div>
+                    </div>
+                    <div id="settings-account" class="info-card card"></div>
+                    <form id="settings-notification-form" class="settings-form card">
+                        <div class="settings-form-head">
+                            <div>
+                                <div class="section-kicker">Routes</div>
+                                <h3>Signal destinations</h3>
+                            </div>
+                        </div>
+                        <div class="settings-input-grid">
+                            <label class="field">
+                                <span>Phone</span>
+                                <input id="settings-phone" type="tel" autocomplete="tel" placeholder="+234...">
+                            </label>
+                        </div>
+                        <div id="settings-telegram-card" class="settings-connect-card">
+                            <div class="settings-connect-kicker">Telegram</div>
+                            <strong>Connect Telegram in two taps</strong>
+                            <p id="settings-telegram-copy">Open the Finwise bot, tap Start once, then come back here and finish the link. No chat ID hunting.</p>
+                            <div id="settings-telegram-status" class="settings-connect-status">No Telegram chat linked yet.</div>
+                            <div class="settings-connect-actions">
+                                <a id="settings-telegram-open" class="action ghost" href="#" target="_blank" rel="noreferrer">Open Telegram Bot</a>
+                                <button id="settings-telegram-finish" class="action primary" type="button">Finish Connect</button>
+                            </div>
+                            <details class="settings-advanced">
+                                <summary>Advanced setup</summary>
+                                <label class="field">
+                                    <span>Manual Telegram Chat ID</span>
+                                    <input id="settings-telegram-chat-id" type="text" placeholder="Only if you already know the chat id">
+                                </label>
+                            </details>
+                        </div>
+                        <div class="toggle-grid">
+                            <label class="toggle-card">
+                                <input id="settings-whatsapp-enabled" type="checkbox">
+                                <div>
+                                    <strong>WhatsApp alerts</strong>
+                                    <span>Let fresh Finwise reads land straight on your phone.</span>
+                                </div>
+                            </label>
+                            <label class="toggle-card">
+                                <input id="settings-telegram-enabled" type="checkbox">
+                                <div>
+                                    <strong>Telegram alerts</strong>
+                                    <span>Keep Telegram ready for new signals and trade-desk follow-ups.</span>
+                                </div>
+                            </label>
+                        </div>
+                        <button class="action primary" type="submit">Save Notification Routes</button>
+                    </form>
+                    <form id="settings-preferences-form" class="settings-form card">
+                        <div class="settings-form-head">
+                            <div>
+                                <div class="section-kicker">Preferences</div>
+                                <h3>Signal and security switches</h3>
+                            </div>
+                        </div>
+                        <div class="toggle-grid">
+                            <label class="toggle-card">
+                                <input id="pref-buy-signals" type="checkbox">
+                                <div>
+                                    <strong>Buy signal alerts</strong>
+                                    <span>Receive BUY-side signal notifications.</span>
+                                </div>
+                            </label>
+                            <label class="toggle-card">
+                                <input id="pref-sell-signals" type="checkbox">
+                                <div>
+                                    <strong>Sell signal alerts</strong>
+                                    <span>Receive SELL-side signal notifications.</span>
+                                </div>
+                            </label>
+                            <label class="toggle-card">
+                                <input id="pref-signal-updates" type="checkbox">
+                                <div>
+                                    <strong>Signal updates</strong>
+                                    <span>Include refreshed Trade Desk updates after an initial signal is sent.</span>
+                                </div>
+                            </label>
+                            <label class="toggle-card">
+                                <input id="pref-high-confidence" type="checkbox">
+                                <div>
+                                    <strong>High confidence only</strong>
+                                    <span>Only send alerts above the stronger confidence threshold.</span>
+                                </div>
+                            </label>
+                            <label class="toggle-card">
+                                <input id="pref-market-digest" type="checkbox">
+                                <div>
+                                    <strong>Market digest</strong>
+                                    <span>Receive a daily market summary when this alert is available.</span>
+                                </div>
+                            </label>
+                            <label class="toggle-card">
+                                <input id="pref-authenticator" type="checkbox">
+                                <div>
+                                    <strong>Authenticator 2FA</strong>
+                                    <span>Mark authenticator app verification as active.</span>
+                                </div>
+                            </label>
+                            <label class="toggle-card">
+                                <input id="pref-sms-verification" type="checkbox">
+                                <div>
+                                    <strong>SMS verification</strong>
+                                    <span>Keep SMS verification enabled for account actions.</span>
+                                </div>
+                            </label>
+                            <label class="toggle-card">
+                                <input id="pref-login-alerts" type="checkbox">
+                                <div>
+                                    <strong>Login alerts</strong>
+                                    <span>Receive login activity alerts for your account.</span>
+                                </div>
+                            </label>
+                        </div>
+                        <button class="action primary" type="submit">Save Preferences</button>
+                    </form>
+                    <form id="settings-password-form" class="settings-form card">
+                        <div class="settings-form-head">
+                            <div>
+                                <div class="section-kicker">Security</div>
+                                <h3>Change password</h3>
+                            </div>
+                        </div>
+                        <div class="settings-input-grid">
+                            <label class="field">
+                                <span>Current Password</span>
+                                <input id="settings-current-password" type="password" autocomplete="current-password" placeholder="Current password">
+                            </label>
+                            <label class="field">
+                                <span>New Password</span>
+                                <input id="settings-new-password" type="password" autocomplete="new-password" placeholder="New password">
+                            </label>
+                            <label class="field">
+                                <span>Confirm Password</span>
+                                <input id="settings-confirm-password" type="password" autocomplete="new-password" placeholder="Confirm new password">
+                            </label>
+                        </div>
+                        <div id="settings-security" class="info-card info-card--nested"></div>
+                        <button class="action secondary" type="submit">Update Password</button>
+                    </form>
+                    <button id="logout-button" class="action secondary logout-button" type="button">Sign Out</button>
+                </section>
+            </main>
+
+            <nav class="bottom-nav card">
+                <button type="button" class="nav-item" data-page-target="home">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 11.5 12 5l8 6.5V20a1 1 0 0 1-1 1h-4.5v-5h-5v5H5a1 1 0 0 1-1-1Z" />
+                    </svg>
+                    <span class="nav-item-label">Dashboard</span>
+                </button>
+                <button type="button" class="nav-item is-active" data-page-target="markets">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 18V9M12 18V5M18 18v-8" />
+                    </svg>
+                    <span class="nav-item-label">Market</span>
+                </button>
+                <button type="button" class="nav-item" data-page-target="desk">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M7 6v12M7 9h4M7 15h4M17 6v12M17 8h-4M17 14h-4" />
+                    </svg>
+                    <span class="nav-item-label">Trading</span>
+                </button>
+                <button type="button" class="nav-item" data-page-target="journal">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 4a8 8 0 1 0 8 8" />
+                        <path d="M12 8v4l2.6 1.7" />
+                    </svg>
+                    <span class="nav-item-label">Trade Journal</span>
+                </button>
+                <button type="button" class="nav-item" data-page-target="settings">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h13A1.5 1.5 0 0 1 20 8.5v7A1.5 1.5 0 0 1 18.5 17h-13A1.5 1.5 0 0 1 4 15.5Z" />
+                        <path d="M4 10.2h16M8 14h4" />
+                    </svg>
+                    <span class="nav-item-label">Settings</span>
+                </button>
+            </nav>
+        </section>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="/mobile/vendor/lightweight-charts.js"></script>
+    <script src="/mobile/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+{"id": "connection-corpus-1", "text": "Finwise broker connection snapshot\nBroker: bybit\nAuth Method: api_key\nActive: 1\n\nSummary:\nbybit connection is active using api_key.", "metadata": {"source": "broker_connections", "connection_id": 1, "broker_name": "bybit", "auth_method": "api_key", "active": 1}}

@@ -1,0 +1,120 @@
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: #0f0f0f;
+  border-bottom: 1px solid #333;
+  font-size: 13px;
+  color: #d1d5db;
+  gap: 24px;
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+
+.connection-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.indicator-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #9ca3af;
+}
+
+.connection-indicator.connected .indicator-dot {
+  background-color: #10b981;
+  animation: pulse 2s infinite;
+}
+
+.connection-indicator.disconnected .indicator-dot {
+  background-color: #ef5350;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.indicator-text {
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.error-message {
+  color: #ef5350;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-middle {
+  flex: 0 0 auto;
+}
+
+.symbol-name {
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.status-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.price-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.price-label {
+  color: #9ca3af;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+}
+
+.price-value {
+  color: #e5e7eb;
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.change-value {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+@media (max-width: 1200px) {
+  .status-bar {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .status-right {
+    width: 100%;
+    order: 3;
+  }
+}

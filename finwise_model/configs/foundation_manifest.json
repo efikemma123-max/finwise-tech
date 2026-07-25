@@ -1,0 +1,30 @@
+{
+  "project_name": "finwise-foundation-research",
+  "objective": "Build Finwise-owned language intelligence for market explanation, route transparency, and broker-aware reasoning.",
+  "stages": [
+    {
+      "name": "domain-corpus",
+      "goal": "Build Finwise-specific raw text for market, broker, route, and risk language.",
+      "input_file": "finwise_model/datasets/finwise_domain_corpus.jsonl",
+      "task_type": "causal-language-modeling"
+    },
+    {
+      "name": "instruction-sft",
+      "goal": "Train the assistant to answer like Finwise Copilot with grounded live-context explanations.",
+      "input_file": "finwise_model/datasets/finwise_copilot_sft.jsonl",
+      "task_type": "supervised-fine-tuning"
+    },
+    {
+      "name": "runtime-integration",
+      "goal": "Serve the resulting model locally and route Finwise Copilot traffic into it.",
+      "input_file": "broker_ai_copilot.py",
+      "task_type": "deployment"
+    }
+  ],
+  "recommended_starting_point": {
+    "base_model_family": "Llama 3.1",
+    "local_runtime": "Ollama",
+    "first_target": "instruction tuning before any true domain pretraining"
+  }
+}
+

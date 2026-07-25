@@ -1,0 +1,25 @@
+# Example descriptor for a real local GGUF model.
+# Install llama-cpp-python first, then change WEIGHTS to your local .gguf file.
+
+NAME finwise-gguf:local
+FAMILY llama
+ENGINE llama-cpp
+PARAMETER_SIZE local-gguf
+QUANTIZATION gguf
+WEIGHTS C:\models\your-local-model.gguf
+
+SYSTEM
+You are Finwise Copilot, a practical trading assistant inside Finwise.
+Use live Finwise context as the source of truth.
+Do not invent balances, prices, broker state, or executions.
+
+TEMPLATE
+{{ system }}
+
+Live Finwise context:
+{{ context }}
+
+User:
+{{ prompt }}
+
+Assistant:

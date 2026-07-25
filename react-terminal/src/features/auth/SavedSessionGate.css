@@ -1,0 +1,119 @@
+.session-gate {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  padding: 10px 2px 4px;
+}
+
+.session-gate__hero h1 {
+  margin: 10px 0 0;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  letter-spacing: -0.06em;
+}
+
+.session-gate__hero p {
+  margin: 10px 0 0;
+  max-width: 30rem;
+  color: rgba(188, 206, 230, 0.84);
+  font-size: 0.97rem;
+  line-height: 1.6;
+}
+
+.session-gate__eyebrow,
+.session-gate__status,
+.session-gate__field span {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.session-gate__eyebrow,
+.session-gate__status {
+  color: var(--mobile-accent);
+}
+
+.session-gate__card {
+  padding: 20px;
+  display: grid;
+  gap: 16px;
+  border-radius: 24px;
+}
+
+.session-gate__copy {
+  margin: 0;
+  color: rgba(220, 232, 247, 0.9);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.session-gate__copy strong {
+  color: #ffffff;
+}
+
+.session-gate__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.session-gate__primary,
+.session-gate__secondary {
+  min-height: 50px;
+  padding: 0 16px;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.session-gate__primary {
+  color: #03242a;
+  background: linear-gradient(90deg, #17e3b8 0%, #44f0f5 100%);
+  box-shadow: 0 14px 28px rgba(21, 220, 184, 0.24);
+}
+
+.session-gate__primary--compact {
+  min-height: 46px;
+}
+
+.session-gate__secondary {
+  color: #e7f3ff;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.session-gate__form {
+  display: grid;
+  gap: 12px;
+}
+
+.session-gate__field {
+  display: grid;
+  gap: 8px;
+}
+
+.session-gate__field span {
+  color: rgba(160, 179, 207, 0.8);
+}
+
+.session-gate__field input {
+  min-height: 52px;
+  padding: 0 16px;
+  border-radius: 16px;
+  color: #f6fbff;
+  background: rgba(9, 17, 31, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.session-gate__field input::placeholder {
+  color: rgba(144, 163, 191, 0.72);
+}
+
+@media (max-width: 400px) {
+  .session-gate__actions {
+    grid-template-columns: 1fr;
+  }
+}

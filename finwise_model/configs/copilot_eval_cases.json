@@ -1,0 +1,68 @@
+[
+  {
+    "id": "blocked_market_route",
+    "context_id": "blocked_btc_3m",
+    "question": "Why is the route blocked and what is the market doing right now?",
+    "scope": "market",
+    "expected_intents": ["route", "market"],
+    "required_substrings": ["blocked", "market-wise"]
+  },
+  {
+    "id": "run_signal_action",
+    "context_id": "blocked_btc_3m",
+    "question": "Run a fresh signal for this market.",
+    "scope": "market",
+    "expected_actions": ["run_signal"],
+    "required_substrings": ["fresh signal"]
+  },
+  {
+    "id": "open_order_book_action",
+    "context_id": "blocked_btc_3m",
+    "question": "Open the order book.",
+    "scope": "market",
+    "expected_actions": ["open_order_book"],
+    "required_substrings": ["opened the Order Book"]
+  },
+  {
+    "id": "broker_status_review",
+    "context_id": "disconnected_sol_5m",
+    "question": "Explain the broker status for this setup.",
+    "scope": "trade",
+    "expected_intents": ["broker"],
+    "required_substrings": ["broker side", "Not Connected"]
+  },
+  {
+    "id": "trade_plan_entry_map",
+    "context_id": "ready_eth_15m",
+    "question": "Show me the entry, stop, target, and size for this trade plan.",
+    "scope": "trade",
+    "expected_intents": ["trade_plan", "risk"],
+    "required_substrings": ["Trade map", "Entry", "stop loss", "take profit", "Planned size"]
+  },
+  {
+    "id": "hold_trade_plan_guardrail",
+    "context_id": "hold_btc_1m",
+    "question": "Can I take this trade now?",
+    "scope": "trade",
+    "expected_intents": ["trade_plan"],
+    "required_substrings": ["HOLD", "no active entry"]
+  },
+  {
+    "id": "memory_style_update",
+    "context_id": "hold_btc_1m",
+    "question": "Keep it simple and explain the market.",
+    "scope": "market",
+    "expected_intents": ["market"],
+    "expected_memory": {
+      "response_style": "simple"
+    }
+  },
+  {
+    "id": "ready_next_step",
+    "context_id": "ready_eth_15m",
+    "question": "What should I do next?",
+    "scope": "trade",
+    "expected_intents": ["next"],
+    "required_substrings": ["execute with the connected broker"]
+  }
+]

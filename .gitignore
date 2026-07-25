@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environments
+venv/
+.venv/
+
+# Local environment and secrets
+.env
+credentials.json
+token.json
+pending_user.json
+
+# Local SQLite runtime files
+*.db
+*.db-shm
+*.db-wal
+
+# Browser/test profiles
+.chrome-test-profile/
+.edge-test-profile/
+.codex-mobile-edge/
+
+# Temporary and diagnostic output
+diagnostics/
+tmp_*.txt
+test_*.txt
+dxdiag_*.txt
+
+# Frontend dependencies/build outputs
+node_modules/
+dist/
+build/
+react-terminal/node_modules/
+react-terminal/dist/

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finwise Terminal</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+    <div class="terminal-shell">
+        <header class="terminal-topbar">
+            <div class="brand-block">
+                <div class="brand-mark">F</div>
+                <div>
+                    <div class="eyebrow">Finwise</div>
+                    <h1>Real Trading Terminal</h1>
+                </div>
+            </div>
+
+            <div class="toolbar">
+                <div id="broker-chip" class="status-chip">No broker connected</div>
+
+                <label class="control">
+                    <span>Symbol</span>
+                    <select id="symbol-select"></select>
+                </label>
+
+                <div class="timeframes" id="timeframe-strip">
+                    <button class="tf-button active" data-interval="1m">1m</button>
+                    <button class="tf-button" data-interval="5m">5m</button>
+                    <button class="tf-button" data-interval="15m">15m</button>
+                    <button class="tf-button" data-interval="1h">1h</button>
+                    <button class="tf-button" data-interval="4h">4h</button>
+                    <button class="tf-button" data-interval="1d">1d</button>
+                </div>
+
+                <label class="control balance-input">
+                    <span>Balance</span>
+                    <input id="balance-input" type="number" min="50" step="50" value="1000">
+                </label>
+
+                <button id="broker-button" class="action-button secondary">Connect Broker</button>
+                <button id="signal-button" class="action-button primary">Get Signal</button>
+                <button id="autotrade-button" class="action-button ghost">Auto Trade</button>
+            </div>
+        </header>
+
+        <div id="server-message" class="server-message hidden"></div>
+
+        <main class="terminal-grid">
+            <section class="main-panel chart-panel">
+                <div class="panel-header">
+                    <div>
+                        <div class="panel-title" id="chart-symbol-title">BTCUSDT</div>
+                        <div class="panel-subtitle" id="chart-status">Live terminal feed</div>
+                    </div>
+                    <div class="price-strip">
+                        <div class="metric-pill">
+                            <span>Last</span>
+                            <strong id="headline-price">--</strong>
+                        </div>
+                        <div class="metric-pill">
+                            <span>24h</span>
+                            <strong id="headline-change">--</strong>
+                        </div>
+                        <div class="metric-pill">
+                            <span>Funding</span>
+                            <strong id="headline-funding">--</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="chart-root" class="chart-root"></div>
+            </section>
+
+            <aside class="side-panel">
+                <section class="panel orderbook-panel">
+                    <div class="panel-header compact">
+                        <div>
+                            <div class="panel-title">Order Book</div>
+                            <div class="panel-subtitle">Live depth</div>
+                        </div>
+                        <div class="orderbook-summary">
+                            <span id="spread-label">Spread --</span>
+                            <span id="mid-label">Mid --</span>
+                        </div>
+                    </div>
+
+                    <div class="book-head row">
+                        <span>Bid</span>
+                        <span>Size</span>
+                        <span>Ask</span>
+                        <span>Size</span>
+                    </div>
+                    <div id="orderbook-rows" class="orderbook-rows"></div>
+                </section>
+
+                <section class="panel market-panel">
+                    <div class="panel-header compact">
+                        <div>
+                            <div class="panel-title">Live Market</div>
+                            <div class="panel-subtitle">Fast market state</div>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span>Mark</span>
+                            <strong id="stat-mark">--</strong>
+                        </div>
+                        <div class="stat-card">
+                            <span>Index</span>
+                            <strong id="stat-index">--</strong>
+                        </div>
+                        <div class="stat-card">
+                            <span>24h High</span>
+                            <strong id="stat-high">--</strong>
+                        </div>
+                        <div class="stat-card">
+                            <span>24h Low</span>
+                            <strong id="stat-low">--</strong>
+                        </div>
+                        <div class="stat-card">
+                            <span>OI</span>
+                            <strong id="stat-oi">--</strong>
+                        </div>
+                        <div class="stat-card">
+                            <span>24h Volume</span>
+                            <strong id="stat-volume">--</strong>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel signal-panel">
+                    <div class="panel-header compact">
+                        <div>
+                            <div class="panel-title">AI Signal</div>
+                            <div class="panel-subtitle">Finwise execution breakdown</div>
+                        </div>
+                    </div>
+
+                    <div id="signal-empty" class="signal-empty">
+                        Signal stays here. Use <strong>Get Signal</strong> when the chart and order book look ready.
+                    </div>
+
+                    <div id="signal-card" class="signal-card hidden">
+                        <div class="signal-topline">
+                            <div>
+                                <div id="signal-side" class="signal-side">HOLD</div>
+                                <div id="signal-reason" class="signal-reason">Waiting for a clean setup.</div>
+                            </div>
+                            <div class="confidence-block">
+                                <span>Confidence</span>
+                                <strong id="signal-confidence">0%</strong>
+                            </div>
+                        </div>
+
+                        <div class="signal-grid">
+                            <div class="signal-metric">
+                                <span>Entry</span>
+                                <strong id="signal-entry">--</strong>
+                            </div>
+                            <div class="signal-metric">
+                                <span>Target</span>
+                                <strong id="signal-target">--</strong>
+                            </div>
+                            <div class="signal-metric">
+                                <span>Stop</span>
+                                <strong id="signal-stop">--</strong>
+                            </div>
+                            <div class="signal-metric">
+                                <span>Risk/Reward</span>
+                                <strong id="signal-rr">--</strong>
+                            </div>
+                        </div>
+
+                        <div class="signal-tags" id="signal-tags"></div>
+                    </div>
+
+                    <div class="broker-summary">
+                        <div class="broker-summary-row">
+                            <span>Broker</span>
+                            <strong id="broker-name">Not connected</strong>
+                        </div>
+                        <div class="broker-summary-row">
+                            <span>Mode</span>
+                            <strong id="broker-mode">Offline</strong>
+                        </div>
+                        <div class="broker-summary-row">
+                            <span>Balance</span>
+                            <strong id="broker-balance">--</strong>
+                        </div>
+                    </div>
+
+                    <div id="trade-result" class="trade-result hidden"></div>
+                </section>
+            </aside>
+        </main>
+    </div>
+
+    <div id="broker-modal" class="modal hidden">
+        <div class="modal-backdrop" data-close-modal="true"></div>
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <div class="panel-title">Connect Broker</div>
+                    <div class="panel-subtitle">Save a broker profile or connect a live API for auto trade.</div>
+                </div>
+                <button id="modal-close" class="icon-button">×</button>
+            </div>
+
+            <div class="modal-tabs">
+                <button class="modal-tab active" data-tab="profile">Broker Profile</button>
+                <button class="modal-tab" data-tab="live">Live API</button>
+            </div>
+
+            <div id="broker-modal-message" class="inline-message hidden"></div>
+
+            <div id="modal-tab-profile" class="modal-pane active">
+                <div class="form-grid">
+                    <label class="control full">
+                        <span>Broker Name</span>
+                        <input id="profile-broker-name" type="text" placeholder="Binance, Bybit, OKX...">
+                    </label>
+                    <label class="control">
+                        <span>Account Alias</span>
+                        <input id="profile-account-alias" type="text" placeholder="Main account">
+                    </label>
+                    <label class="control">
+                        <span>Balance Basis</span>
+                        <input id="profile-balance" type="number" min="50" step="50" value="1000">
+                    </label>
+                </div>
+
+                <div class="modal-actions">
+                    <button id="profile-save" class="action-button primary">Save Profile</button>
+                    <button id="profile-disconnect" class="action-button secondary">Disconnect Profile</button>
+                </div>
+            </div>
+
+            <div id="modal-tab-live" class="modal-pane">
+                <div class="form-grid">
+                    <label class="control full">
+                        <span>Live Broker</span>
+                        <select id="live-broker-name"></select>
+                    </label>
+                    <label class="control full">
+                        <span>API Key</span>
+                        <input id="live-api-key" type="password" placeholder="Enter API key">
+                    </label>
+                    <label class="control full">
+                        <span>API Secret</span>
+                        <input id="live-api-secret" type="password" placeholder="Enter API secret">
+                    </label>
+                </div>
+
+                <div class="modal-actions">
+                    <button id="live-connect" class="action-button primary">Connect Live API</button>
+                    <button id="live-disconnect" class="action-button secondary">Disconnect Live API</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>

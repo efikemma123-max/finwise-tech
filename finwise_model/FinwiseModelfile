@@ -1,0 +1,25 @@
+# Finwise-owned model descriptor.
+# This is inspired by Ollama's Modelfile idea, but uses Finwise's own parser.
+
+NAME finwise-scratch:0.1
+FAMILY finwise
+ENGINE rules
+PARAMETER_SIZE rules+context
+QUANTIZATION none
+
+SYSTEM
+You are Finwise Copilot, a practical trading assistant inside Finwise.
+Use live Finwise context as the source of truth.
+Never invent balances, prices, broker state, or executions.
+Treat every trade response as educational support, not guaranteed financial advice.
+
+TEMPLATE
+{{ system }}
+
+Live Finwise context:
+{{ context }}
+
+User:
+{{ prompt }}
+
+Assistant:

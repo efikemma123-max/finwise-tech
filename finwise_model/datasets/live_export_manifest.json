@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-05-06T05:48:08.666491+00:00",
+  "live_chat_turns": 0,
+  "trade_rows": 0,
+  "event_rows": 0,
+  "broker_connection_rows": 1,
+  "sft_examples": 1,
+  "pretrain_documents": 1,
+  "files": {
+    "sft": "finwise_model\\datasets\\finwise_live_sft.jsonl",
+    "pretrain": "finwise_model\\datasets\\finwise_live_domain_corpus.jsonl"
+  }
+}

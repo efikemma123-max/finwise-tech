@@ -1,0 +1,16 @@
+[OK] Fetched history for ADAUSDT
+[OK] Fetched history for AVAXUSDT
+[OK] Fetched history for BNBUSDT
+[OK] Fetched history for BTCUSDT
+INFO:     127.0.0.1:51795 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51796 - "GET / HTTP/1.1" 200 OK
+[OK] Fetched history for DOGEUSDT
+[OK] Fetched history for ETHUSDT
+[OK] Fetched history for SOLUSDT
+[OK] Fetched history for XRPUSDT
+INFO:     127.0.0.1:51806 - "GET /api/broker/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51807 - "GET /api/market/symbols HTTP/1.1" 200 OK
+[WS] Disconnected: timed out during opening handshake | reconnecting in 5s...
+[WS] Connected and subscribed to ['ADAUSDT', 'AVAXUSDT', 'BNBUSDT', 'BTCUSDT', 'DOGEUSDT', 'ETHUSDT', 'SOLUSDT', 'XRPUSDT']
+INFO:     127.0.0.1:51821 - "GET /api/market/terminal?symbol=BTCUSDT&interval=1m HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51825 - "GET /api/signal?symbol=BTCUSDT&interval=1m&balance=1000 HTTP/1.1" 200 OK

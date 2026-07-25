@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deriv Callback | efikemma</title>
+    <meta name="description" content="Deriv OAuth callback page for the efikemma local test account.">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="../" aria-label="Back to efikemma home">
+            <img src="../../../logo.png" alt="Finwise logo">
+            <span>efikemma callback</span>
+        </a>
+        <nav class="nav-links" aria-label="Callback navigation">
+            <a href="../">Home</a>
+            <a href="../#oauth">OAuth setup</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero callback-hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Deriv OAuth callback</p>
+                <h1>Deriv returned to efikemma</h1>
+                <p class="lead">
+                    This page reads the account and token values Deriv sends back after authorization.
+                    Keep this page private while testing because returned tokens can access the account scopes you approved.
+                </p>
+                <div class="hero-actions">
+                    <a class="button button-secondary" href="../">Back to setup</a>
+                    <button id="clear-session" class="button button-primary" type="button">Clear saved return</button>
+                </div>
+            </div>
+
+            <aside class="profile-panel" aria-label="Callback status">
+                <div class="profile-badge">DR</div>
+                <h2 id="callback-status">Checking return</h2>
+                <p id="callback-summary">Reading Deriv authorization parameters...</p>
+                <dl>
+                    <div>
+                        <dt>Callback URL</dt>
+                        <dd>Ready</dd>
+                    </div>
+                    <div>
+                        <dt>Storage</dt>
+                        <dd>Local only</dd>
+                    </div>
+                    <div>
+                        <dt>Account</dt>
+                        <dd id="account-count">0</dd>
+                    </div>
+                </dl>
+            </aside>
+        </section>
+
+        <section class="section">
+            <div class="section-copy">
+                <p class="eyebrow">Returned accounts</p>
+                <h2>Authorization result</h2>
+                <p>
+                    If Deriv login succeeded, your account rows appear below. Copy only the token you
+                    intend to test, and do not share it publicly.
+                </p>
+            </div>
+            <div id="accounts-list" class="account-list"></div>
+        </section>
+
+        <section class="section auto-connect-section">
+            <div class="section-copy">
+                <p class="eyebrow">Finwise handoff</p>
+                <h2>Automatic local connection</h2>
+                <p id="auto-connect-copy">
+                    When a Deriv token is present, this page opens Finwise locally and asks it to
+                    connect the returned account automatically.
+                </p>
+            </div>
+            <form id="finwise-target-form" class="connect-form">
+                <label class="field">
+                    <span>Finwise local URL</span>
+                    <input id="finwise-target-url" type="url" value="http://localhost:8501/" placeholder="http://localhost:8501/">
+                </label>
+                <button id="open-finwise" class="button button-primary" type="submit">Open Finwise</button>
+            </form>
+            <p id="auto-connect-message" class="form-message" aria-live="polite"></p>
+        </section>
+
+        <section class="section notice">
+            <h2>Use this in Deriv app settings</h2>
+            <p>
+                Redirect URL: <strong id="callback-public-url">http://localhost:8765/promo/efikemma/callback/</strong>
+                <br>
+                Website URL: <strong id="website-public-url">http://localhost:8765/promo/efikemma/</strong>
+            </p>
+        </section>
+    </main>
+
+    <script src="./callback.js"></script>
+</body>
+</html>
